@@ -6,6 +6,7 @@ const url = "https://star-spark-pasta.glitch.me/api/products";
 
 export function CartCrudContextProvider({ children }) {
   const [cart, setCart] = useState({});
+  const [item, setItem] = useState({});
   const [items, setItems] = useState([]);
 
   // feting cart details from local storage
@@ -33,12 +34,18 @@ export function CartCrudContextProvider({ children }) {
     navigate(path);
   }
 
+  function updateItem(item){
+    setItem(item);
+  }
+
   const value = {
     cart,
     setCart,
     navigateToPage,
     items,
-    setItems
+    setItems,
+    item,
+    updateItem,
   };
   // console.log(children)
   return (

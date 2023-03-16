@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Items from "./pages/Items";
-import Item from "./pages/Item";
+import ItemView from "./pages/ItemView";
 import Cart from "./pages/Cart";
 
 import Navigation from "./components/Navigation";
@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/items" element={<Items />}></Route>
-            <Route path="/items/:id" element={<Item />}></Route>
+            <Route path="/items/:id" element={<ItemView />}></Route>
             <Route path="/cart" element={<Cart />}></Route>
           </Routes>
         </CartCrudContextProvider>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Items from './Items';
+
 function Home(props) {
     return (
        <>
@@ -15,6 +17,9 @@ function Home(props) {
                 <button className='px-6 py-2 rounded-ful text-white font-bold mt-4 bg-yellow-500 hover:bg-yellow-600'>Order Now</button>
             </div>
         </div>
+       </div>
+       <div className='pb-24'>
+        <Items />
        </div>
        </>
     );
