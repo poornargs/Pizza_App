@@ -5,7 +5,7 @@ const cartCrudContext = createContext();
 const url = "https://star-spark-pasta.glitch.me/api/products";
 
 export function CartCrudContextProvider({ children }) {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   const [item, setItem] = useState({});
   const [items, setItems] = useState([]);
 
@@ -34,8 +34,13 @@ export function CartCrudContextProvider({ children }) {
     navigate(path);
   }
 
-  function updateItem(item){
+  function updateItem(item) {
     setItem(item);
+  }
+
+  function updateCart(carts) {
+    setCart(carts);
+    // localStorage.setItem("cart", JSON.stringify(carts));
   }
 
   const value = {
@@ -46,6 +51,7 @@ export function CartCrudContextProvider({ children }) {
     setItems,
     item,
     updateItem,
+    updateCart,
   };
   // console.log(children)
   return (

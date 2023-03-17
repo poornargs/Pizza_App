@@ -5,12 +5,18 @@ import { Link } from "react-router-dom";
 import { useCartCrud } from "../context/CartContext";
 
 function Item(props) {
-  const { cart, setCart, navigateToPage } = useCartCrud();
+  const { cart, updateCart, navigateToPage } = useCartCrud();
 
   const { item } = props;
 
   // console.log(item, " Item");
 
+  function addItem(){
+    
+    const c = cart;
+    c.push(item);
+    updateCart(c);
+  }
 
 
   return (
@@ -25,7 +31,7 @@ function Item(props) {
 
         <div className="flex justify-between items-center mt-4">
                 <span> ₹ {item.price}</span>
-                <button className="px-6 py-2 rounded-ful text-white font-bold mt-4 bg-yellow-500 hover:bg-yellow-600">
+                <button className="px-6 py-2 rounded-ful text-white font-bold mt-4 bg-yellow-500 hover:bg-yellow-600" onClick={() => addItem()}>
                     Add
                 </button>
         </div>
