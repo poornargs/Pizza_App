@@ -5,11 +5,14 @@ function Cart(props) {
   const { navigateToPage, items, cart, updateCart } = useCartCrud();
 
   const [cartItems, setCartItems] = useState([]);
+  const [grandTotal, setGrandTotal] = useState(0);
 
   useEffect(() => {
     // prepare cart data
 
     const obj = {};
+
+    // [1, 2, 1, 3] // cart
 
     cart.forEach((item) => {
       if (item._id in obj) {
@@ -23,11 +26,27 @@ function Cart(props) {
       }
     });
 
+    // {
+    //     1: [1, 1],
+    //     2: [2],
+    //     3: [3]
+    // } // obj
+
     const data = [];
+    let count = 0;
 
     for (const key in obj) {
+      count += (obj.key?.length * obj[key].price);
       data.push(obj[key]);
     }
+
+    setGrandTotal(count);
+
+    // [
+    //     [2],
+    //     [3]
+    //     [1, 1],
+    // ] // data
     console.log("FInal Data log: ", data);
 
     setCartItems(data);
@@ -40,8 +59,8 @@ function Cart(props) {
       <h1 className="my-12 font-bold">Cart Items</h1>
 
       <ul>
-        {cartItems.map((item) => (
-          <li className="mb-12">
+        {cartItems.map((item, index) => (
+          <li key={index} className="mb-12">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <img className="h-16" src="/images/peproni.png" alt="item" />
@@ -68,7 +87,7 @@ function Cart(props) {
       <hr className="my-6" />
 
       <div className="text-right">
-        <strong>Grand Total:</strong>₹ 500
+        <strong>Grand Total:</strong>₹ {grandTotal}
       </div>
 
       <div className="text-right mt-6">
