@@ -35,7 +35,8 @@ function ItemView(props) {
       <br />
 
       <div className="flex">
-        <img src="/images/peproni.png" alt="pizza" />
+        {/* <img src="/images/peproni.png" alt="pizza" /> */}
+        <img src={item.image} alt="pizza" />
         <div className="ml-16">
           <h1 className="text-xl font-bold">{item?.name}</h1>
           <div className="text-md">{item?.size}</div>

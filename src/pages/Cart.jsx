@@ -27,30 +27,68 @@ function Cart(props) {
     });
 
     // {
-    //     1: [1, 1],
-    //     2: [2],
-    //     3: [3]
+    //     1: [{item1}, {item2}],
+    //     2: [{item1}],
+    //     3: [{item1}],
     // } // obj
 
     const data = [];
     let count = 0;
 
     for (const key in obj) {
-      count += (obj.key?.length * obj[key].price);
+      // count grand total
+      console.log(" Obj key : ", obj[key]);
+      count += obj[key].length * obj[key][0]?.price;
       data.push(obj[key]);
     }
+
+    console.log("Count: ", count);
 
     setGrandTotal(count);
 
     // [
+    //   [1, 1],
     //     [2],
     //     [3]
-    //     [1, 1],
     // ] // data
     console.log("FInal Data log: ", data);
 
     setCartItems(data);
   }, [cart]);
+
+  function deleteItem(item) {
+    console.log(item);
+
+    const c = cart.filter((itm) => itm._id != item._id);
+
+    updateCart(c);
+  }
+
+  function decreaseCount(item) {
+    console.log(item);
+
+    const c = [];
+
+    let firstOccurance = false;
+
+    for (const row of cart) {
+      if (row._id == item._id) {
+        // matching case
+
+        if (firstOccurance == false) {
+          firstOccurance = true;
+        } else {
+          // next occurance
+          c.push(row);
+        }
+      } else {
+        // other items
+        c.push(row);
+      }
+    }
+
+    updateCart(c);
+  }
 
   // add dynamic image
 
@@ -67,7 +105,10 @@ function Cart(props) {
                 <span className="font-bold ml-4 w-48">{item[0].name}</span>
               </div>
               <div>
-                <button className="bg-yellow-500 px-4 py-2 rouned-full leading-none">
+                <button
+                  className="bg-yellow-500 px-4 py-2 rouned-full leading-none"
+                  onClick={() => decreaseCount(item[0])}
+                >
                   -
                 </button>
                 <b className="px-4">{item.length}</b>
@@ -76,7 +117,10 @@ function Cart(props) {
                 </button>
               </div>
               <span>₹ {item[0].price}</span>
-              <button className="bg-red-500 px-4 py-2 rouned-full leading-none text-white">
+              <button
+                className="bg-red-500 px-4 py-2 rouned-full leading-none text-white"
+                onClick={() => deleteItem(item[0])}
+              >
                 Delete
               </button>
             </div>
