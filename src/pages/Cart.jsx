@@ -90,6 +90,36 @@ function Cart(props) {
     updateCart(c);
   }
 
+  function increaseItem(item) {
+    const c = [...cart, item];
+    updateCart(c);
+  }
+
+  function increaseItemOld(item) {
+    console.log(item._id);
+    console.log(cart);
+    let c = [];
+    let occurence = true;
+    for (let i of cart) {
+      if (i._id == item._id) {
+        //match push item
+        if (occurence == true) {
+          c.push(i);
+          c.push(i);
+          occurence = false;
+          // console.log("count",c)
+        } else {
+          console.log("occurence fasle");
+          c.push(i);
+        }
+      } else {
+        c.push(i);
+        // console.log("push not yet")
+      }
+    }
+    updateCart(c);
+  }
+
   // add dynamic image
 
   return (
@@ -112,7 +142,10 @@ function Cart(props) {
                   -
                 </button>
                 <b className="px-4">{item.length}</b>
-                <button className="bg-yellow-500 px-4 py-2 rouned-full leading-none">
+                <button
+                  className="bg-yellow-500 px-4 py-2 rouned-full leading-none"
+                  onClick={() => increaseItem(item[0])}
+                >
                   +
                 </button>
               </div>

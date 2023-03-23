@@ -8,6 +8,9 @@ import Navigation from "./components/Navigation";
 
 import { CartCrudContextProvider } from "./context/CartContext";
 
+
+import HOC from "./HOC";
+
 function App() {
   return (
     <div className="w-4/5 mx-auto">
@@ -26,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default HOC(App);
