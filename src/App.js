@@ -20,7 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/items" element={<Items />}></Route>
-            <Route path="/items/:id" element={<ItemView />}></Route>
+            <Route path="/items/id" element={<ItemView />}></Route>
+            {/* <Route path="/items/:id" element={<ItemView />}></Route> */}
             <Route path="/cart" element={<Cart />}></Route>
           </Routes>
         </CartCrudContextProvider>

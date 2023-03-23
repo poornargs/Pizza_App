@@ -22,7 +22,8 @@ function Item(props) {
 
   return (
     <>
-    <Link to={ '/items/' + item._id }>
+    <Link to={ '/items/id?id=' + item._id }>
+    {/* <Link to={ '/items/' + item._id }> */}
         <img src={item.image} alt="pizza" />
         {/* <img src="/images/peproni.png" alt="pizza" /> */}
 

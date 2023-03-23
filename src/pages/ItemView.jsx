@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useCartCrud } from "../context/CartContext";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 function ItemView(props) {
   const { navigateToPage, items, cart, updateCart } = useCartCrud();
 
   const [item, setItem] = useState({});
 
-  const params = useParams();
+  // const params = useParams();
+  const {search} = useLocation();
 
-  console.log(params);
+  const params = new URLSearchParams(search);
+
+  console.log(params.get('id'), params.get('name'), params.get('age'), " Params", search);
 
   // trigger on component mount
   useEffect(() => {
-    setItem(items.filter((item) => item._id == params.id)[0]);
+    setItem(items.filter((item) => item._id == params.get('id'))[0]);
     console.log(item);
-  }, [params.id]);
+  }, [params.get('id')]);
 
   function addToCart() {
     console.log("item", item);
@@ -23,6 +26,7 @@ function ItemView(props) {
   }
 
   return (
+    // <>test</>
     <div className="container max-auto mt-12">
       <button
         className="md-12 font-bold"
