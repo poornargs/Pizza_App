@@ -29,6 +29,12 @@ function Navigation(props) {
           <Link to="/items">Items</Link>
         </li>
         <li className="ml-6">
+          <Link to="/file">File Upload</Link>
+        </li>
+        <li className="ml-6">
+          <Link to="/employee">Add Employee</Link>
+        </li>
+        <li className="ml-6">
           <Link to="/cart">
             <div style={cartStyle}>
               <span className="font-bold">{cart.length}</span>

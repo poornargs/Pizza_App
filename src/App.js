@@ -10,6 +10,8 @@ import { CartCrudContextProvider } from "./context/CartContext";
 
 
 import HOC from "./HOC";
+import FileUpload from "./pages/FileUpload";
+import AddEmployee from "./pages/AddEmployee";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/items/id" element={<ItemView />}></Route>
             {/* <Route path="/items/:id" element={<ItemView />}></Route> */}
             <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/file" element={<FileUpload />}></Route>
+            <Route path="/employee" element={<AddEmployee />}></Route>
           </Routes>
         </CartCrudContextProvider>
       </BrowserRouter>
